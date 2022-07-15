@@ -16,5 +16,13 @@ def test_decision_endpoint_returns_okay_status():
     r = requests.post(url, json=state_data)
     assert r.status_code == 200
 
+def test_decision_endpoint_returns_schedule():
+    url = "http://{}:{}/decision/".format(get_local_ip_address(), PORT)
+    state_data = {"user_id": "test_user", "prior_day_brush_duration": 240, \
+    "time_of_day": 0, "day_type": 0, "app_engagement": 1}
+    r = requests.post(url, json=state_data)
+    print(r.text)
+
 test_decision_endpoint_returns_okay_status()
+test_decision_endpoint_returns_schedule()
 print("All Tests Passed.")

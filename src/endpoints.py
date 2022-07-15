@@ -1,14 +1,16 @@
 from flask import Flask, request
-import numpy as np
+from process_state import *
+from action_selection import *
 
 app = Flask(__name__)
 @app.route('/decision/', methods=['GET', 'POST'])
 def decision():
     state_data = request.get_json()
-    print(state_data)
+    current_state = process_state(state_data)
+    action_schedule = action_selection(state_data['user_id'], current_state)
     # 1. main controller will send current state features as a JSON string
     # 2. we will convert the JSON string to a dictionary of values
-    return state_data
+    return action_schedule
 
 @app.route('/update/', methods=['GET'])
 def update():
