@@ -1,13 +1,14 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request
 import numpy as np
 
 app = Flask(__name__)
-@app.route('/decision/<int:a>/', methods=['GET', 'POST'])
-def decision(a):
+@app.route('/decision/', methods=['GET', 'POST'])
+def decision():
+    state_data = request.get_json()
+    print(state_data)
     # 1. main controller will send current state features as a JSON string
     # 2. we will convert the JSON string to a dictionary of values
-    return "Decision Time Endpoint Works with value {}!".format(a)
+    return state_data
 
 @app.route('/update/', methods=['GET'])
 def update():
