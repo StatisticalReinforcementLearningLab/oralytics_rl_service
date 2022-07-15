@@ -9,11 +9,12 @@ To test the endpoints, go to the terminal and type `python3 endpoints.py` in the
 
 `* Running on http://0.0.0.0:105/ (Press CTRL+C to quit)`
 
-Then launch any web broswer and go to whichever url specified above with the added endpoint name. For example:
+Note that `0.0.0.0` will be replaced by your unique local IP address.
+
+Examples of how to call the endpoints (Ref: [Endpoints Unit Testing](https://github.com/StatisticalReinforcementLearningLab/oralytics_rl_service/blob/main/testing/endpoints_test.py)):
 
 To call the decision time endpoint:
-
-`http://0.0.0.0:105/decision/{SOME_INTEGER_VALUE}`
+Make a post request `r = requests.post(url, json=json_data)` where `url` is `http://{YOUR_LOCAL_IP_ADDRESS}:{PORT=105}/decision/` and `json_data` is a JSON struct of state values.
 
 To call the update time endpoint:
 
